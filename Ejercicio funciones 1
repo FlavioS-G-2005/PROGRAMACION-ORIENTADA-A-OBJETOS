@@ -1,28 +1,26 @@
+
+
 package main
 
-import (
-	"fmt"
-	"strings"
-)
-
-
+import "fmt"
 
 func main() {
 	var opcion string
 
 	for {
-		fmt.Println("\n--- MENÚ ---")
-		fmt.Println("1. Promedio de curso")
-		fmt.Println("2. Suma de 1 a n")
-		fmt.Println("3. Celsius a Fahrenheit")
-		fmt.Println("4. Fahrenheit a Celsius")
-		fmt.Println("0. Salir")
-		fmt.Print("Elige: ")
+		fmt.Println("\n--- MENÚ PRINCIPAL ---")
+		fmt.Println("1. Calcular promedio de estudiantes")
+		fmt.Println("2. Suma de 1 al número n")
+		fmt.Println("3. Convertir Celsius a Fahrenheit")
+		fmt.Println("4. Convertir Fahrenheit a Celsius")
+		fmt.Println("0 o 'salir' para terminar")
+		fmt.Print("Elija una opción: ")
 
 		fmt.Scan(&opcion)
-		opcion = strings.ToLower(opcion)
 
-		if opcion == "0" || opcion == "salir" {
+		// Validación de salida evaluando explícitamente sin usar el paquete strings
+		if opcion == "0" || opcion == "salir" || opcion == "SALIR" {
+			fmt.Println("Saliendo del programa...")
 			break
 		}
 
@@ -36,72 +34,79 @@ func main() {
 		case "4":
 			opcion4()
 		default:
-			fmt.Println("Opción inválida.")
-		}666
+			fmt.Println("Opción no válida. Intente de nuevo.")
+		}
 	}
 }
 
 func opcion1() {
 	var cantidad int
-	fmt.Print("Cantidad de estudiantes: ")
+	fmt.Print("Ingrese la cantidad de estudiantes de un curso: ")
 	fmt.Scan(&cantidad)
 
+	if cantidad <= 0 {
+		fmt.Println("La cantidad debe ser mayor a 0.")
+		return
+	}
+
 	notas := make([]float64, cantidad)
+	
 	for i := 0; i < cantidad; i++ {
-		fmt.Printf("Nota del estudiante %d: ", i+1)
+		fmt.Printf("Ingrese la nota (0 a 100) del estudiante %d: ", i+1)
 		fmt.Scan(&notas[i])
 	}
 
 	promedio := averageGrade(notas)
-	fmt.Printf("Promedio: %.2f\n", promedio)
+	fmt.Printf("\nEl promedio del curso es: %.2f\n", promedio)
 
 	if promedio >= 70 {
-		fmt.Println("Aprobado")
+		fmt.Println("Estado: Aprobado")
 	} else {
-		fmt.Println("Reprobado")
+		fmt.Println("Estado: Reprobado")
 	}
 
-	
+	// Evaluación en cascada de mayor a menor para simplificar la lógica
 	switch {
 	case promedio >= 90:
-		fmt.Println("Excellent performance")
+		fmt.Println("Rendimiento: Excellent performance")
 	case promedio >= 80:
-		fmt.Println("Good performance")
+		fmt.Println("Rendimiento: Good performance")
 	case promedio >= 70:
-		fmt.Println("Satisfactory performance")
+		fmt.Println("Rendimiento: Satisfactory performance")
 	default:
-		fmt.Println("Needs improvement")
+		fmt.Println("Rendimiento: Needs improvement")
 	}
 }
 
 func averageGrade(notas []float64) float64 {
 	suma := 0.0
-	for _, n := range notas {
-		suma += n
+	for _, nota := range notas {
+		suma += nota
 	}
 	return suma / float64(len(notas))
 }
 
 func opcion2() {
 	var n, suma int
-	fmt.Print("Ingresa n: ")
+	fmt.Print("Ingrese un número (n) para calcular la suma de 1 a n: ")
 	fmt.Scan(&n)
+
 	for i := 1; i <= n; i++ {
 		suma += i
 	}
-	fmt.Println("Suma total:", suma)
+	fmt.Printf("La suma de números del 1 al %d es: %d\n", n, suma)
 }
 
 func opcion3() {
 	var c float64
-	fmt.Print("Grados Celsius: ")
+	fmt.Print("Ingrese la temperatura en Celsius: ")
 	fmt.Scan(&c)
-	fmt.Printf("Fahrenheit: %.2f\n", (c*9/5)+32) 
+	fmt.Printf("%.2f °C equivale a %.2f °F\n", c, (c*9/5)+32)
 }
 
 func opcion4() {
 	var f float64
-	fmt.Print("Grados Fahrenheit: ")
+	fmt.Print("Ingrese la temperatura en Fahrenheit: ")
 	fmt.Scan(&f)
-	fmt.Printf("Celsius: %.2f\n", (f-32)*5/9) 
+	fmt.Printf("%.2f °F equivale a %.2f °C\n", f, (f-32)*5/9)
 }
