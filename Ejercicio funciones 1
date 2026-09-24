@@ -5,14 +5,11 @@ import (
 	"strings"
 )
 
-// Proyecto: Menú de Opciones en Go
-// Autores: Flavio y Alex
-// Universidad Internacional del Ecuador (UIDE) - Ingeniería en Sistemas
 
 func main() {
 	var opcion string
 
-	// Bucle infinito para mantener el menú activo hasta que se elija salir
+	
 	for {
 		fmt.Println("\n--- MENÚ PRINCIPAL ---")
 		fmt.Println("1. Calcular promedio de estudiantes")
@@ -31,7 +28,7 @@ func main() {
 			break
 		}
 
-		// Evaluamos la opción elegida
+		
 		switch opcion {
 		case "1":
 			ejecutarOpcion1()
@@ -47,7 +44,7 @@ func main() {
 	}
 }
 
-// Opción 1: Notas de estudiantes
+
 func ejecutarOpcion1() {
 	var cantidad int
 	fmt.Print("Ingresa la cantidad de estudiantes del curso: ")
@@ -58,7 +55,7 @@ func ejecutarOpcion1() {
 		return
 	}
 
-	// Creamos un arreglo (slice) para guardar las notas
+	
 	notas := make([]float64, cantidad)
 	
 	for i := 0; i < cantidad; i++ {
@@ -66,18 +63,18 @@ func ejecutarOpcion1() {
 		fmt.Scan(&notas[i])
 	}
 
-	// Llamamos a la función que calcula el promedio
+	
 	promedio := averageGrade(notas)
 	fmt.Printf("\nEl promedio del curso es: %.2f\n", promedio)
 
-	// Condicional simple para aprobar o reprobar
+	
 	if promedio >= 70 {
 		fmt.Println("Estado: APROBADO")
 	} else {
 		fmt.Println("Estado: REPROBADO")
 	}
 
-	// Switch para los rangos de rendimiento
+	
 	switch {
 	case promedio >= 90 && promedio <= 100:
 		fmt.Println("Rendimiento: Excellent performance")
@@ -90,7 +87,7 @@ func ejecutarOpcion1() {
 	}
 }
 
-// Función requerida para calcular el promedio
+
 func averageGrade(notas []float64) float64 {
 	suma := 0.0
 	for _, nota := range notas {
@@ -99,7 +96,7 @@ func averageGrade(notas []float64) float64 {
 	return suma / float64(len(notas))
 }
 
-// Opción 2: Suma de 1 a n
+
 func ejecutarOpcion2() {
 	var n int
 	fmt.Print("Ingresa un número (n) para sumar del 1 a n: ")
@@ -112,7 +109,7 @@ func ejecutarOpcion2() {
 	fmt.Printf("La suma de números del 1 al %d es: %d\n", n, suma)
 }
 
-// Opción 3: Celsius a Fahrenheit
+
 func ejecutarOpcion3() {
 	var c float64
 	fmt.Print("Ingresa la temperatura en Celsius: ")
@@ -121,7 +118,7 @@ func ejecutarOpcion3() {
 	fmt.Printf("%.2f °C equivale a %.2f °F\n", c, f)
 }
 
-// Opción 4: Fahrenheit a Celsius
+
 func ejecutarOpcion4() {
 	var f float64
 	fmt.Print("Ingresa la temperatura en Fahrenheit: ")
