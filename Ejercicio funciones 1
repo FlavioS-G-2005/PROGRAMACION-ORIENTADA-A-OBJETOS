@@ -17,7 +17,7 @@ func main() {
 
 		fmt.Scan(&opcion)
 
-		// Validación de salida evaluando explícitamente sin usar el paquete strings
+		
 		if opcion == "0" || opcion == "salir" || opcion == "SALIR" {
 			fmt.Println("Saliendo del programa...")
 			break
@@ -64,7 +64,7 @@ func opcion1() {
 		fmt.Println("Estado: Reprobado")
 	}
 
-	// Evaluación en cascada de mayor a menor para simplificar la lógica
+	
 	switch {
 	case promedio >= 90:
 		fmt.Println("Rendimiento: Excellent performance")
