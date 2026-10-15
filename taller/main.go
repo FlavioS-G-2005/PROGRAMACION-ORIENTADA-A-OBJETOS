@@ -11,7 +11,6 @@ func main() {
 	var dolares float64
 	var moneda string
 
-	// --- PRUEBA DEL CONVERSOR ---
 	fmt.Println("Ingrese la cantidad en dolares:")
 	fmt.Scanln(&dolares)
 
@@ -20,8 +19,8 @@ func main() {
 
 	utilidades.Convertir(dolares, moneda)
 
-	// --- PRUEBA DEL CONTADOR ---
-	fmt.Println("\nIngrese una moneda solamente):")
+	 
+	fmt.Println("\nIngrese una frase para contar sus vocales):")
 	
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
